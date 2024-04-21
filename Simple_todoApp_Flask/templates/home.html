@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TodoApp</title>
+</head>
+<body>
+  <div style="padding-left:200px">
+    <h1>TodoApp Project</h1>
+  <h2>Add a new Todo</h2>
+  <form action="/" method="post">
+      <label for="todo">Todo:</label><br>
+      <input type="text" id="todo" name="todo"><br>
+      <input type="submit" value="Add">
+  </form>
+    
+  <ol>
+    
+      {% for todo in todo_list %}
+          <h4 style="color: green;"><li>{{ todo }}</li></h4>
+      {% endfor %}
+  </ol>
+    </div>
+</body>
+</html>
+    
