@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>styler</title>
+</head>
+<body>
+  <div style="padding-left:400px";>
+  <form action="/" method="post">
+    <h4>Name</h4>
+
+    <input type="text" name="uname" id="uname" placeholder="Enter your name..."> 
+
+    <h4>Color</h4>
+
+
+    <input type="text" name="uname1" id="uname1" placeholder="Write your color..."> <br>
+<br>
+    <input type="submit" value="Style">
+  </form>
+    </div>
+  {% if data %}
+{% if data[1]=='red' %}
+  <h1 style="font-family: 'Brush Script MT', cursive; color:red; padding-left:430px">{{ data[0] }}</h1>
+  {% elif data[1]=='green' %}
+  <h1 style="font-family: 'Brush Script MT', cursive; color:green; padding-left:430px";> data[0] }}</h1>
+  {% elif data[1]=='yellow' %}
+  <h1 style="font-family: 'Brush Script MT', cursive; color:yellow; padding-left:430px;">{{ data[0] }}</h1>
+  {% elif data[1]=='blue' %}
+  <h1 style="font-family: 'Brush Script MT', cursive; color:blue; padding-left:430px;">{{ data[0] }}</h1>
+  {% elif data[1]=='black' %}
+  <h1 style="font-family: 'Brush Script MT', cursive; color:black; padding-left:430px";>{{ data[0] }}</h1>
+  {% elif data[1]=='pink' %}
+  <h1 style="font-family: 'Brush Script MT', cursive; color:pink; padding-left:430px";>{{ data[0] }}</h1>
+{% else %}
+  <h1>write valid color</h1>
+{% endif %}
+  {% endif %}
+</body>
+</html>
