@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next.js Quiz & Certificate Generation</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            padding: 30px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-align: center;
+        }
+        .quiz, .certificate-form {
+            margin-top: 20px;
+        }
+        .question {
+            margin-bottom: 30px;
+        }
+        .question p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .options input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        .certificate-form {
+            display: none;
+        }
+        .certificate-form h1 {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Next.js Quiz</h1>
+        <form id="quizForm">
+            <div class="quiz">
+                <!-- Question 1 -->
+                <div class="question">
+                    <p><strong>1. nextjs kiya hy?</strong></p>
+                    <ul class="options">
+                        <li><label><input type="checkbox" name="q1" value="A"> A) framework</label></li>
+                        <li><label><input type="checkbox" name="q1" value="B"> B) module</label></li>
+                        <li><label><input type="checkbox" name="q1" value="C"> C) repo</label></li>
+                        <li><label><input type="checkbox" name="q1" value="D"> D) package</label></li>
+                    </ul>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question">
+                    <p><strong>2. domain kiya hy?</strong></p>
+                    <ul class="options">
+                        <li><label><input type="checkbox" name="q2" value="A"> A) unique address hy</label></li>
+                        <li><label><input type="checkbox" name="q2" value="B"> B) hsoting ka nam hy</label></li>
+                        <li><label><input type="checkbox" name="q2" value="C"> C) segment hy</label></li>
+                        <li><label><input type="checkbox" name="q2" value="D"> D) none</label></li>
+                    </ul>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question">
+                    <p><strong>3. routing kon si hoti hy nextjs mai?</strong></p>
+                    <ul class="options">
+                        <li><label><input type="checkbox" name="q3" value="A"> A) pages base</label></li>
+                        <li><label><input type="checkbox" name="q3" value="B"> B) function base</label></li>
+                        <li><label><input type="checkbox" name="q3" value="C"> C) file base</label></li>
+                        <li><label><input type="checkbox" name="q3" value="D"> D) A & B</label></li>
+                    </ul>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question">
+                    <p><strong>4. onclick ko hum kiya detay hai?</strong></p>
+                    <ul class="options">
+                        <li><label><input type="checkbox" name="q4" value="A"> A) pages name</label></li>
+                        <li><label><input type="checkbox" name="q4" value="B"> B) function name</label></li>
+                        <li><label><input type="checkbox" name="q4" value="C"> C) public repl</label></li>
+                        <li><label><input type="checkbox" name="q4" value="D"> D) components</label></li>
+                    </ul>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question">
+                    <p><strong>5. html andr typescript k varibale ko use kaisay krtay hai?</strong></p>
+                    <ul class="options">
+                        <li><label><input type="checkbox" name="q5" value="A"> A) curly bracket k andr variable name</label></li>
+                        <li><label><input type="checkbox" name="q5" value="B"> B) square bracket k andr variable name</label></li>
+                        <li><label><input type="checkbox" name="q5" value="C"> C) " " andr</label></li>
+                        <li><label><input type="checkbox" name="q5" value="D"> D)
+use nhi kr saktay</label></li>
+                    </ul>
+                </div>
+
+
+                <!-- Additional questions can be added here in the same format -->
+
+                <!-- Submit Button -->
+                <button type="button" onclick="validateQuiz()">Submit Quiz</button>
+            </div>
+        </form>
+
+        <!-- Certificate Form -->
+        <div class="certificate-form" id="certificateForm">
+            <h1>Generate Your Certificate</h1>
+            <form action="/generate-certificate" method="post">
+                <label for="name">Enter your name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Enter your email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+                <input type="submit" value="Generate Certificate">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateQuiz() {
+            const correctAnswers = {
+                q1: 'A',
+                q2: 'A',
+                q3: 'C',
+                q4: 'B',
+                q5: 'A'
+                // Add more correct answers corresponding to additional questions here
+            };
+            let score = 0;
+            for (let [question, correctAnswer] of Object.entries(correctAnswers)) {
+                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                }
+            }
+
+            if (score === Object.keys(correctAnswers).length) {
+                document.getElementById('quizForm').style.display = 'none';
+                document.getElementById('certificateForm').style.display = 'block';
+            } else {
+                alert('You must answer all questions correctly to generate a certificate.');
+            }
+        }
+    </script>
+</body>
+</html>
