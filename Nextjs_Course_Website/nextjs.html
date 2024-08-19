@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn NextJs</title>
+    <link rel="icon" type="image/x-icon" href="https://nextjs.org/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WRHXQYMZKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WRHXQYMZKY');
+</script>
+
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            height: 100vh;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #2c3e50;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .toggle-sidebar {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+            display: none;
+        }
+
+        main {
+            display: flex;
+            flex-grow: 1;
+            overflow: hidden;
+            padding-top: 5px;
+            box-sizing: border-box;
+        }
+
+        #sidebar {
+            width: 25%;
+            background-color: #34495e;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            color: #ecf0f1;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidebar ul li {
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 12px 15px;
+            background-color: #2c3e50;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-weight: bold;
+            color: #bdc3c7;
+        }
+
+        #sidebar ul li:hover {
+            background-color: #1abc9c;
+            transform: translateX(10px);
+            color: #fff;
+        }
+
+        #content {
+            width: 75%;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #ecf0f1;
+            box-sizing: border-box;
+        }
+
+        .lecture {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .lecture h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin: 0;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 10px;
+        }
+
+        .lecture p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                width: 100%;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                height: calc(100vh - 70px);
+                z-index: 1000;
+                transform: translateX(-100%);
+                box-shadow: none;
+            }
+
+            #sidebar.open {
+                transform: translateX(0);
+            }
+
+            #content {
+                width: 100%;
+                padding: 20px;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .toggle-sidebar {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Internship Ready: Next.js Course - Najaf Ali</h1>
+    <div class="toggle-sidebar" onclick="toggleSidebar()">&#9776;</div>
+</header>
+
+<main>
+    <div id="sidebar">
+        <ul>
+            <li onclick="showLecture('lecture1')">Lecture 1: Introduction</li>
+            <li onclick="showLecture('lecture2')">Lecture 2: HTML CSS Basics</li>
+            <li onclick="showLecture('lecture3')">Lecture 3: Setup - Create a Next.js App</li>
+            <li onclick="showLecture('lecture4')">Lecture 4: Basics Of Web </li>
+            <li onclick="showLecture('lecture5')">Lecture 5: Our First NextJs App</li>
+            <li onclick="showLecture('lecture6')">Lecture 6: Routing</li>
+            <li onclick="showLecture('lecture7')">Lecture 7: Buttons: Onclick Part1</li>
+            <li onclick="showLecture('lecture8')">Lecture 8: Buttons: Onclick Part2</li>
+            <li onclick="showLecture('lecture9')">Project: Create Table</li>
+             <li onclick="showLecture('lecture10')">Certificate</li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div id="lecture1" class="lecture">
+            <h2>Lecture 1: Introduction</h2>
+            <p>Nextjs ko use kr k hum high-quality web websites banatay hai.
+            NextJs aik framework hy, framework mai bahut sari chezay hamaray liye pahlay sy bani hoi milti hai jis sy hum easily applications bana letay hai
+            </p>
+        </div>
+        <div id="lecture2" class="lecture">
+            <h2>Lecture 2: HTML CSS Basics</h2>
+            <p>
+                <pre>
+                <code>
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Display HTML Code</title>
+                    </head>
+                    <body>
+                        <h1>HTML Code</h1>
+                        <pre>
+                    <code>
+                    &lt;!DOCTYPE html&gt;
+                    &lt;html&gt;
+                    &lt;head&gt;
+                        &lt;title&gt;Page Title&lt;/title&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+                        &lt;h1 style="color:red;"&gt;This is a Heading&lt;/h1&gt;
+                        &lt;p&gt;This is a paragraph.&lt;/p&gt;
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+                    </code>
+                        </pre>
+                    </body>
+                    </html>
+
+                </code>
+                    </pre>
+                uper wala aik basic syntax hy html css ka .
+                html saray tags use hotay hai, tags ki opening and closing side hoti hy , like ye aik opening tag hy &lt;h1 &gt;                  <br>  &lt;/h1&gt; ye aik closing  tag hy
+                opening and closing tag k darmiyan mai content hota hy jis ko hum page pe show krwana chahtay hai. CSS content ko style krnay k leye use hoti hy so hum ny h1 tag k andr style ko use kr k bataya k h1 ka color red ho. jb jb hum css use krna chahtay ho jis tag k sath wohi pe style likhna zarori hota hy.
+            </p>
+        </div>
+        <div id="lecture3" class="lecture">
+            <h2>Lecture 3: Setup - Create a Next.js App</h2>
+            <p>
+                hum nextjs ki codding krnay k leye <a href="https://replit.com">replit</a> use kare gy, to ap replit pe acount bana lo , free mai acount banta hy aur free mai ap use kr saktay hai, ye un k leye bhe best hy jin k pass acha laptop ya computer nhi hy, ap easily bowser mai, nextjs ki coding kr saktay ho using replit.
+                <img src="static/replit.png" alt="replit" width="500" height="300">
+
+create replit ya + k icon pe click kr k ap ny repl bana leni hy repl create krtay waqt apko nextjs search kr k select kr leni hy us k bad replit ka nam dena hy then click on "create repl".
+                <img src="static/create repl.png" alt="replit" width="500" height="300">
+apka ab NextJs project ban chuka hy ab ap NextJs ki apps bana saktay ho, coding kr saktay ho.
+                <img src="static/repl1.png" alt="replit" width="500" height="300">
+            </p>
+        </div>
+        <div id="lecture4" class="lecture">
+            <h2>Lecture 4: Basics Of Web</h2>
+            <p>
+                <img src="static/web1.png" alt="website working" width="500" height="300">
+                user request bhejta hy , request server k pas jati hy waha sy response user ko mil jata hy,
+                response mai koi sa bhe data ho sakta hy like user details ya koi page, <br>
+                <b>Hosting</b>
+                <br>
+                <img src="static/hosting.webp" alt="hosting working" width="500" height="300"> <br>
+                <b>Domain</b> <br>
+                domain aik unique address hy jo website ko identify krta hy , 2 website same domain ki nhi ho sakti,
+                domain examples:  najafali.com, google.com, abc.com.
+                domain name ko hum url bhe kehtay hai yaini url of website
+
+            <br>
+            <b>URL</b>
+            <br>
+            <img src="static/url.webp" alt="hosting working" width="500" height="300">
+            </p>
+            </div>
+        <div id="lecture5" class="lecture">
+            <h2>Lecture 5: Our First NextJs App</h2>
+            <p>
+                <img src="static/repl2.png" alt="replit" width="500" height="300">
+                ap uper walay screen sot mai folder dekh saktay ho, agr apni nextjs ki app banani hy to ap ny pages k folder mai ja kr index.tsx ko open kr lena hy , index.tsx hi hamari main file hy jis mai hum ny coding krni ho gi, index.tsx as a home page work krta hy , hum khud k pages bhe bana saktay hai like about us , contact us or blog etc.
+                replit mai ap command k zariye bhe run kr saktay ho app ko aur run button ko click kr k bhe, green color ka button run button hy.
+                so hum dekhna k index,tsx mai bahut sari lines ka code already likha hota hy, ap pahly aik dafa app ko run kr k check kr lena hy k app browser mai kaisi show ho rahi hy.
+                screen shot
+
+                ab next step mai ap ny index.tsx ka sara code remove kr dena,
+                aur index.tsx k andr aik simple typescript ka function bana lena hy us mai ap ny return html code krna hy
+                <img src="static/repl3.png" alt="replit" width="500" height="300">
+                ap uper ss mai dekh saktay ho sara code
+                agr ap aik sy ziada tags use krna chahtay ho then ap ny div tag ko use krna hy div tag k andr jitnay tags dil kare use kr saktay ho, agr ap ny 2 ya 2 sy ziada tags without div use kya to errors ajaye ga .
+                code:
+                <pre>
+
+                <code>
+
+                    function NextApp(){
+                      return(
+                    &lt;div&gt;
+                        &lt;h1&gt;hello This is a First app by najafali&lt;/h1&gt;
+                        &lt;h2&gt;Our First NextJs App&lt;/h2&gt;
+                    &lt;/div&gt;
+                      )
+                    }
+                    export default NextApp
+                </code>
+                export lazmi krna hy.
+                </pre>
+                <img src="static/repl4.png" alt="replit" width="500" height="300">
+
+            </p>
+        </div>
+        <div id="lecture6" class="lecture">
+            <h2>Lecture 6: Routing
+</h2>
+            <p>
+                NextJs mai routing file based hy mtlb k jo ap file banao gy pages folder k andr wo aik route ho gi like agr ap pages k folder mai ja kr about.tsx ki aik file banatay ho to iska mtlb hy k ap ny aik route bana liya yaini k aik page apka ban gaya.
+                <img src="static/repl5.png" alt="replit" width="500" height="300">
+                ab ab about.tsx mai start sy code likh saktay ho ya index.tsx ka code copy kr k about.tsx mai paste kr k chek kr saktay ho kuch update kr k .
+                jb ap about ka page bana lo ab us ko open krna hy to url tab mai ja kr end pe  /about likh kr enter press kro gy to about ka page open ho jaye ga like https://mywebsite/about
+                isy tarah ap bahut saray route bana saktay ho,
+                route mean page
+            </p>
+        </div>
+        <div id="lecture7" class="lecture">
+            <h2>Lecture 7: Buttons: Onclick Part1</h2>
+            <p>
+                                <pre>
+                    <code>
+                        function About(){
+                          function Click(){
+                            let alertsms = "Click carefully"
+                            alert(alertsms)
+                          }
+                          return(
+                            <div>
+
+                                &lt;div&gt;
+                                    &lt;h1&gt;this is an About page&lt;/h1&gt;
+                                    &lt;button onClick={Click}&gt;Click me&lt;/button&gt;
+                                &lt;/div&gt;
+                            </div>
+                          )
+                        }
+                        export default About
+                    </code>
+                </pre>
+
+            uper walay code mai hum ny return sy uper aur main function k andr aik aur function create kiya iska maqsad ye tha k jb user button pe click kare to usay alert message show hona chaye, jis button pe click krna hy wo hamye button bhe to chaye ho ga , us k leye hum ny return k andr div tag k andr aik button tag banaya us k andr hum ny onclick lagaya, onclick ko hum function nam detay hai , jb user click kare ga button pe tub onclick function ko call kr k active kr dy ga aur function ka data show ho jaye ga, hum kisi bhe button pe function call kr saktay hai using onclik.
+            agr hum alert ki jagah console.log likhye to phr data console mai print ho ga.
+            </p>
+        </div>
+        <div id="lecture8" class="lecture">
+            <h2>Lecture 8: Buttons: Onclick Part2</h2>
+            <p>
+                <pre>
+                    <code>
+                        import { useState } from 'react';
+                        function About() {
+                          const [message, setMessage] = useState('Najaf Ali');
+                          function Click() {
+                            setMessage('Ali Abbas!');
+                          }
+                          return (
+                            <div>
+                              &lt;h1&gt;this is an About page&lt;/h1&gt;
+                                &lt;p&gt;{message}&lt;/p&gt;
+
+                              &lt;button onClick={Click}&gt;update me&lt;/button&gt;
+                            </div>
+                          );
+                        }
+                        export default About;
+
+                    </code>
+                </pre>
+
+            is code mai hum ny useState ko import kiya from react, ye isy leye kiya ta k hum data ko browser page mai show krwa sakay, useStae ye hamaye facility deta hy . jb hum useState ko use krtay hai  tub hum data banatay hai jo by
+            default hota hy phr usko set krtay hai k click pe kiya ho mean dynamic data changing krtay hai, message dafault ho gaya aur setMessage after click show ho ga
+            message ki value ko kaha pe show krna hy us k leye hum message variable ko html mai likhtay hai jaesay uper walay code mai um ny button k upper show krwana chahtay hai message value ko
+            typescript k variable ko html tag k andr use krnay ka tarika ye hy curly bracket k andr hum variable name likh detay hai, like                             &lt;p&gt;{message}&lt;/p&gt;
+<br>
+            <b>Code</b>
+            <pre>
+
+                <code>
+                    import { useState } from 'react';
+                    function About() {
+                      const [message, setMessage] = useState(5);
+                      function Click() {
+                        setMessage(message*5);
+
+                      }
+                      return (
+                        <div>
+                          &lt;h1&gt;this is an About page&lt;/h1&gt;
+                            &lt;p&gt;{message}&lt;/p&gt;
+                          &lt;button onClick={Click}&gt;update me&lt;/button&gt;
+                        </div>
+                      );
+                    }
+                    export default About;
+
+                </code>
+            </pre>
+
+            </p>
+        </div>
+        <div id="lecture9" class="lecture">
+            <h2>Lecture 9: Project: Create Table </h2>
+            <p>nextjs app banao jis mai wo kisi bhe number ka table bana dy</p>
+        </div>
+         <div id="lecture10" class="lecture">
+            <h2><a href="https://najafali.pythonanywhere.com/certificateeab-6c040f234bc6-00-3f0oyrwkpua7q">Get Certificate</a></h2>
+            <p>For the successful completion of the course.</p>
+            <br> <br>
+            <b><p>Support Us To Subscribe Our Youtube Chennal </p></b>
+            <a href="https://www.youtube.com/@Giaic14" target="_blank" style="text-decoration: none; color: inherit; font-size: 24px;">
+                    <i class="fab fa-youtube" style="transition: transform 0.3s ease;"></i>
+                </a>
+            </div>
+    </div>
+</main>
+
+<script>
+    function showLecture(lectureId) {
+        const lectures = document.querySelectorAll('.lecture');
+        lectures.forEach(lecture => {
+            lecture.style.display = 'none';
+        });
+        document.getElementById(lectureId).style.display = 'block';
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('open');
+    }
+
+    // Optional: Show the first lecture by default
+    document.addEventListener('DOMContentLoaded', () => {
+        showLecture('lecture1');
+    });
+</script>
+
+</body>
+</html>
